@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "471038120373",
+    "project_id": "sumberwringinapp",
+    "storage_bucket": "sumberwringinapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471038120373:android:0d7cb3947deb48999a09fc",
+        "android_client_info": {
+          "package_name": "com.example.flutter_pkm_sw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471038120373-r9blib134gmfg292hd1v2kj2tavkc20g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQb2BnTPUAAFDG_vTB-OINscH8hBE5Szk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471038120373-r9blib134gmfg292hd1v2kj2tavkc20g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "471038120373-frj0g22mtm1poguav1sj45vu5hjcm0s0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterPkmSw"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
