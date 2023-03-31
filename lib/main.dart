@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       getPages: auth
           ? [
-              GetPage(name: '/', page: () => const Home()),
+              GetPage(name: '/', page: () => Home()),
             ]
           : [
               GetPage(name: '/', page: () => const Wrapper()),

@@ -44,40 +44,39 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAN5IvV8uSeJm2U5Tfq7C3Snu1S_9_mm4k',
-    appId: '1:471038120373:web:5550dada9b6d3e7a9a09fc',
-    messagingSenderId: '471038120373',
-    projectId: 'sumberwringinapp',
-    authDomain: 'sumberwringinapp.firebaseapp.com',
-    storageBucket: 'sumberwringinapp.appspot.com',
-    measurementId: 'G-RDDHNRS81H',
+    apiKey: 'AIzaSyDCUxZA7f1bFQNjhMWSRL4J0rneW75eJp4',
+    appId: '1:813061672284:web:7bc03f4f79857c01b94599',
+    messagingSenderId: '813061672284',
+    projectId: 'sumber-wringin-flutter',
+    authDomain: 'sumber-wringin-flutter.firebaseapp.com',
+    storageBucket: 'sumber-wringin-flutter.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBQb2BnTPUAAFDG_vTB-OINscH8hBE5Szk',
-    appId: '1:471038120373:android:0d7cb3947deb48999a09fc',
-    messagingSenderId: '471038120373',
-    projectId: 'sumberwringinapp',
-    storageBucket: 'sumberwringinapp.appspot.com',
+    apiKey: 'AIzaSyCvsLtyFqWEU2XKcu3O5OdPDAG7YMNRCaE',
+    appId: '1:813061672284:android:c697a5a63f7ece41b94599',
+    messagingSenderId: '813061672284',
+    projectId: 'sumber-wringin-flutter',
+    storageBucket: 'sumber-wringin-flutter.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBgVjxV5KYWDwHMkLy7O_joW9tNU-4XUlY',
-    appId: '1:471038120373:ios:7434ff9cb1fa70a39a09fc',
-    messagingSenderId: '471038120373',
-    projectId: 'sumberwringinapp',
-    storageBucket: 'sumberwringinapp.appspot.com',
-    iosClientId: '471038120373-frj0g22mtm1poguav1sj45vu5hjcm0s0.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDovOZvXC1rkC4qrnhlJAnIzkdJ0_fVSrQ',
+    appId: '1:813061672284:ios:c970ac26d4bf983bb94599',
+    messagingSenderId: '813061672284',
+    projectId: 'sumber-wringin-flutter',
+    storageBucket: 'sumber-wringin-flutter.appspot.com',
+    iosClientId: '813061672284-pnarkkl13thvecifhppbgj11b95jqivn.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterPkmSw',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBgVjxV5KYWDwHMkLy7O_joW9tNU-4XUlY',
-    appId: '1:471038120373:ios:7434ff9cb1fa70a39a09fc',
-    messagingSenderId: '471038120373',
-    projectId: 'sumberwringinapp',
-    storageBucket: 'sumberwringinapp.appspot.com',
-    iosClientId: '471038120373-frj0g22mtm1poguav1sj45vu5hjcm0s0.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDovOZvXC1rkC4qrnhlJAnIzkdJ0_fVSrQ',
+    appId: '1:813061672284:ios:c970ac26d4bf983bb94599',
+    messagingSenderId: '813061672284',
+    projectId: 'sumber-wringin-flutter',
+    storageBucket: 'sumber-wringin-flutter.appspot.com',
+    iosClientId: '813061672284-pnarkkl13thvecifhppbgj11b95jqivn.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterPkmSw',
   );
 }

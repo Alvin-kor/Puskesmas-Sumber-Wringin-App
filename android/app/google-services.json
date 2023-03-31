@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "471038120373",
-    "project_id": "sumberwringinapp",
-    "storage_bucket": "sumberwringinapp.appspot.com"
+    "project_number": "813061672284",
+    "project_id": "sumber-wringin-flutter",
+    "storage_bucket": "sumber-wringin-flutter.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:471038120373:android:0d7cb3947deb48999a09fc",
+        "mobilesdk_app_id": "1:813061672284:android:c697a5a63f7ece41b94599",
         "android_client_info": {
           "package_name": "com.example.flutter_pkm_sw"
         }
       },
       "oauth_client": [
         {
-          "client_id": "471038120373-r9blib134gmfg292hd1v2kj2tavkc20g.apps.googleusercontent.com",
+          "client_id": "813061672284-c4df4p4qsl02s7s5ttiovh23soim07l9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBQb2BnTPUAAFDG_vTB-OINscH8hBE5Szk"
+          "current_key": "AIzaSyCvsLtyFqWEU2XKcu3O5OdPDAG7YMNRCaE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "471038120373-r9blib134gmfg292hd1v2kj2tavkc20g.apps.googleusercontent.com",
+              "client_id": "813061672284-c4df4p4qsl02s7s5ttiovh23soim07l9.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "471038120373-frj0g22mtm1poguav1sj45vu5hjcm0s0.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.flutterPkmSw"
-              }
             }
           ]
         }

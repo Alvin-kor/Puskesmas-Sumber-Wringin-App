@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pkm_sw/services/auth.dart';
+import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
+  final _auth = Get.find<AuthServices>();
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Home !');
+    return ElevatedButton(
+        onPressed: () {
+          _auth.logOut();
+        },
+        child: const Text('Go Back'));
   }
 }

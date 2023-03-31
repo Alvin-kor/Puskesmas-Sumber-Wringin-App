@@ -10,7 +10,7 @@ class Wrapper extends GetView<AuthServices> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return controller.isLogged.value ? const Home() : const Authenticate();
+      return controller.isLogged.value ? Home() : const Authenticate();
     });
   }
 }
