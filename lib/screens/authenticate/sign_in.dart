@@ -60,13 +60,30 @@ class SignIn extends StatelessWidget {
                     flex: 2,
                     child: Container(
                         padding: EdgeInsets.symmetric(
-                            vertical: isMobileWidth ? 20.0 : 45.0,
+                            vertical: isMobileWidth ? 20.0 : 35.0,
                             horizontal: isMobileWidth ? 25.0 : 40.0),
                         decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 255, 255, 248)),
-                        child: RoundedInput(
-                          hintText: 'Email...',
-                          controller: _auth.emailEditController,
+                        child: Obx(
+                          () => _auth.switchField.value
+                              ? RoundedInput(
+                                  password: true,
+                                  autoFocus: true,
+                                  hintText: 'Password...',
+                                  controller: _auth.passwordEditController,
+                                  onChange: (value) {
+                                    _auth.updateValue('password', value);
+                                  },
+                                )
+                              : RoundedInput(
+                                  password: false,
+                                  autoFocus: false,
+                                  hintText: 'Username...',
+                                  controller: _auth.usernameEditController,
+                                  onChange: (value) {
+                                    _auth.updateValue('username', value);
+                                  },
+                                ),
                         )),
                   ),
                   Expanded(
@@ -84,33 +101,36 @@ class SignIn extends StatelessWidget {
                                     bottom: Radius.circular(20.0))),
                             minimumSize: const Size.fromHeight(10)),
                         onPressed: () {
-                          _auth.emailEditController.text == ''
-                              ? _auth.updateEmail(
-                                  _auth.emailEditController.text, 'Anonymous')
-                              : _auth.updateEmail(
-                                  _auth.emailEditController.text, 'User');
-                          Get.snackbar(
-                              'Login As',
-                              _auth.emailEditController.text != ''
-                                  ? _auth.emailEditController.text.split("@")[0]
-                                  : 'Anonymous');
+                          _auth.username.isEmpty
+                              ? _auth.signIn('Anonymous')
+                              : _auth.username.isNotEmpty &&
+                                      _auth.password.isEmpty
+                                  ? _auth.signIn("Next")
+                                  : _auth.signIn('User');
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: [
                             Icon(
                               Icons.login,
                               color: Theme.of(context).colorScheme.background,
                             ),
                             const SizedBox(width: 10.0),
-                            Text(
-                              'Login to App',
-                              style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                  color:
-                                      Theme.of(context).colorScheme.background),
-                            ),
+                            Obx(() => Flexible(
+                                    child: Text(
+                                  _auth.username.isEmpty
+                                      ? 'Login to App As Anonymous'
+                                      : _auth.password.isEmpty &&
+                                              _auth.switchField.value != true
+                                          ? 'Next'
+                                          : 'Login to App As User',
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .background),
+                                ))),
                           ],
                         ),
                       ),

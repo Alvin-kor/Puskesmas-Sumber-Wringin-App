@@ -5,17 +5,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthServices extends GetxController {
   final isLogged = false.obs;
-  final email = ''.obs;
+  final username = ''.obs;
+  final password = ''.obs;
   final error = ''.obs;
-  final emailEditController = TextEditingController();
+  final switchField = false.obs;
+  final usernameEditController = TextEditingController();
+  final passwordEditController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  updateEmail(dataEmail, type) {
-    email(dataEmail);
+  updateValue(type, value) {
+    type == 'username' ? username(value) : password(value);
+  }
+
+  signIn(type) {
     if (type == 'Anonymous') {
       signInAnon();
+    } else if (type == 'Next') {
+      switchField.value = true;
     } else {
-      print('User Login Under Development');
+      username.toString() == 'pkmsw'
+          ? username('$username@admin.com')
+          : username('$username@gmail.com');
+      signInEmailAndPassword();
     }
   }
 
@@ -30,10 +41,31 @@ class AuthServices extends GetxController {
       UserCredential result = await _auth.signInAnonymously();
       User user = result.user!;
       isLogged.value = true;
+      Get.snackbar('Login Success ', 'Login As Anonymous');
       return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());
       return null;
+    }
+  }
+
+  // Sign In Email and Password
+  Future signInEmailAndPassword() async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: username.toString(), password: password.toString());
+      User user = result.user!;
+      isLogged.value = true;
+      var nameUser = usernameEditController.text.split("@")[0] == 'pkmsw'
+          ? 'Admin'
+          : usernameEditController.text.split("@")[0];
+      Get.snackbar('Login Success ', 'Login As $nameUser');
+      switchField.value = false;
+      usernameEditController.clear();
+      passwordEditController.clear();
+      return _userFromFirebaseUser(user);
+    } catch (error) {
+      print(error.toString());
     }
   }
 
