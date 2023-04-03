@@ -119,11 +119,15 @@ class SignIn extends StatelessWidget {
                             Obx(() => Flexible(
                                     child: Text(
                                   _auth.username.isEmpty
-                                      ? 'Login to App As Anonymous'
+                                      ? isMobileWidth
+                                          ? 'Login As Anonymous'
+                                          : 'Login to App As Anonymous'
                                       : _auth.password.isEmpty &&
                                               _auth.switchField.value != true
                                           ? 'Next'
-                                          : 'Login to App As User',
+                                          : isMobileWidth
+                                              ? 'Login As User'
+                                              : 'Login to App As User',
                                   style: TextStyle(
                                       fontSize: 20.0,
                                       fontWeight: FontWeight.bold,
@@ -144,7 +148,7 @@ class SignIn extends StatelessWidget {
       ),
       bottomSheet: Container(
         color: Theme.of(context).colorScheme.background,
-        height: MediaQuery.of(context).size.height * 0.08,
+        height: MediaQuery.of(context).size.height * 0.1,
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

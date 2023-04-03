@@ -30,8 +30,8 @@ class AuthServices extends GetxController {
   }
 
   // Create User Object Based on Firebase User
-  UserData _userFromFirebaseUser(User? user) {
-    return UserData(uid: user?.uid);
+  UserData? _userFromFirebaseUser(User? user) {
+    return user != null ? UserData(uid: user.uid) : null;
   }
 
   // Sign In Anonymous User
@@ -66,12 +66,17 @@ class AuthServices extends GetxController {
     }
   }
 
-  Stream<UserData> get userData {
+  Stream<UserData?> get userData {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
   // Sign Out User
-  void logOut() async {
-    await _auth.signOut();
+  Future logOut() async {
+    try {
+      await _auth.signOut();
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
   }
 }

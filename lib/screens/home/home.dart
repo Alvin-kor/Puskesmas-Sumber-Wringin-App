@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pkm_sw/services/auth.dart';
 import 'package:flutter_pkm_sw/widgets/custom_card_section.dart';
 import 'package:flutter_pkm_sw/widgets/sidebar_widget.dart';
 // import 'package:flutter_pkm_sw/services/auth.dart';
@@ -10,6 +11,7 @@ class Home extends StatelessWidget {
   Home({super.key});
   // final _auth = Get.find<AuthServices>();
   final _sidebar = Get.find<Sidebar>();
+  final _auth = Get.find<AuthServices>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,47 @@ class Home extends StatelessWidget {
                   _sidebar.showSidebarHandle();
                 },
                 child: const Icon(Icons.menu_open))),
+        actions: [
+          PopupMenuButton<int>(
+              position: PopupMenuPosition.under,
+              icon: const Icon(Icons.account_circle),
+              itemBuilder: ((context) => [
+                    PopupMenuItem<int>(
+                      value: 0,
+                      child: Row(
+                        children: const [
+                          Icon(Icons.manage_accounts),
+                          SizedBox(width: 4.0),
+                          Text('My Account'),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem<int>(
+                      value: 1,
+                      child: Row(
+                        children: const [
+                          Icon(Icons.settings),
+                          SizedBox(width: 4.0),
+                          Text('Settings'),
+                        ],
+                      ),
+                    ),
+                    const PopupMenuDivider(),
+                    PopupMenuItem<int>(
+                      onTap: () async {
+                        await _auth.logOut();
+                      },
+                      value: 2,
+                      child: Row(
+                        children: const [
+                          Icon(Icons.logout),
+                          SizedBox(width: 4.0),
+                          Text('Logout'),
+                        ],
+                      ),
+                    ),
+                  ]))
+        ],
       ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

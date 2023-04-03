@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pkm_sw/models/user.dart';
 import 'package:flutter_pkm_sw/services/auth.dart';
@@ -12,6 +13,10 @@ class Wrapper extends GetView<AuthServices> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserData?>(context);
-    return user != null ? Home() : const Authenticate();
+    if (user == null) {
+      return const Authenticate();
+    } else {
+      return Home();
+    }
   }
 }
