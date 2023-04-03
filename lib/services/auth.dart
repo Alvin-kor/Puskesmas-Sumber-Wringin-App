@@ -4,7 +4,6 @@ import 'package:flutter_pkm_sw/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthServices extends GetxController {
-  final isLogged = false.obs;
   final username = ''.obs;
   final password = ''.obs;
   final error = ''.obs;
@@ -31,8 +30,8 @@ class AuthServices extends GetxController {
   }
 
   // Create User Object Based on Firebase User
-  UserData _userFromFirebaseUser(User user) {
-    return UserData(uid: user.uid);
+  UserData _userFromFirebaseUser(User? user) {
+    return UserData(uid: user?.uid);
   }
 
   // Sign In Anonymous User
@@ -40,7 +39,6 @@ class AuthServices extends GetxController {
     try {
       UserCredential result = await _auth.signInAnonymously();
       User user = result.user!;
-      isLogged.value = true;
       Get.snackbar('Login Success ', 'Login As Anonymous');
       return _userFromFirebaseUser(user);
     } catch (error) {
@@ -55,7 +53,6 @@ class AuthServices extends GetxController {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: username.toString(), password: password.toString());
       User user = result.user!;
-      isLogged.value = true;
       var nameUser = usernameEditController.text.split("@")[0] == 'pkmsw'
           ? 'Admin'
           : usernameEditController.text.split("@")[0];
@@ -69,9 +66,12 @@ class AuthServices extends GetxController {
     }
   }
 
+  Stream<UserData> get userData {
+    return _auth.authStateChanges().map(_userFromFirebaseUser);
+  }
+
   // Sign Out User
   void logOut() async {
     await _auth.signOut();
-    isLogged.value = false;
   }
 }

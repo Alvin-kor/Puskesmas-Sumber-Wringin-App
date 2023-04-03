@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_pkm_sw/models/user.dart';
 import 'package:flutter_pkm_sw/screens/home/home.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,28 +17,32 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final auth = Get.put(AuthServices().isLogged.value);
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-      initialBinding: ServiceBindings(),
-      initialRoute: '/',
-      getPages: auth
-          ? [
-              GetPage(name: '/', page: () => Home()),
-            ]
-          : [
-              GetPage(name: '/', page: () => const Wrapper()),
-            ],
-      home: const Wrapper(),
+    final user = Provider.of<UserData?>(context);
+    return StreamProvider<UserData?>.value(
+      value: AuthServices().userData,
+      initialData: null,
+      child: GetMaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+        darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+        initialBinding: ServiceBindings(),
+        initialRoute: '/',
+        getPages: user != null
+            ? [
+                GetPage(name: '/', page: () => Home()),
+              ]
+            : [
+                GetPage(name: '/', page: () => Wrapper()),
+              ],
+        home: Wrapper(),
+      ),
     );
   }
 }
