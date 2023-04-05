@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_pkm_sw/models/user.dart';
@@ -20,6 +22,14 @@ void main() async {
   runApp(const MyApp());
 }
 
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -30,6 +40,7 @@ class MyApp extends StatelessWidget {
       initialData: null,
       child: GetMaterialApp(
         title: 'Flutter Demo',
+        scrollBehavior: MyCustomScrollBehavior(),
         theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
         darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
         initialBinding: ServiceBindings(),

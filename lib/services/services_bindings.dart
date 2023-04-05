@@ -1,4 +1,5 @@
 import 'package:flutter_pkm_sw/services/auth.dart';
+import 'package:flutter_pkm_sw/services/homeHelper.dart';
 import 'package:flutter_pkm_sw/services/sidebar.dart';
 import 'package:get/get.dart';
 
@@ -7,5 +8,6 @@ class ServiceBindings implements Bindings {
   void dependencies() {
     Get.lazyPut<AuthServices>(() => AuthServices());
     Get.lazyPut<Sidebar>(() => Sidebar());
+    Get.lazyPut<HomeHelper>(() => HomeHelper());
   }
 }

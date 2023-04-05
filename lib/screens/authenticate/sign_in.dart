@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_pkm_sw/services/auth.dart';
 import 'package:flutter_pkm_sw/widgets/rounded_input.dart';
 import 'package:get/get.dart';
@@ -64,27 +65,29 @@ class SignIn extends StatelessWidget {
                             horizontal: isMobileWidth ? 25.0 : 40.0),
                         decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 255, 255, 248)),
-                        child: Obx(
-                          () => _auth.switchField.value
-                              ? RoundedInput(
-                                  password: true,
-                                  autoFocus: true,
-                                  hintText: 'Password...',
-                                  controller: _auth.passwordEditController,
-                                  onChange: (value) {
-                                    _auth.updateValue('password', value);
-                                  },
-                                )
-                              : RoundedInput(
-                                  password: false,
-                                  autoFocus: false,
-                                  hintText: 'Username...',
-                                  controller: _auth.usernameEditController,
-                                  onChange: (value) {
-                                    _auth.updateValue('username', value);
-                                  },
-                                ),
-                        )),
+                        child: Obx(() => AnimatedCrossFade(
+                            crossFadeState: _auth.switchField.value
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst,
+                            duration: const Duration(milliseconds: 500),
+                            firstChild: RoundedInput(
+                              password: false,
+                              autoFocus: false,
+                              hintText: 'Username...',
+                              controller: _auth.usernameEditController,
+                              onChange: (value) {
+                                _auth.updateValue('username', value);
+                              },
+                            ),
+                            secondChild: RoundedInput(
+                              password: true,
+                              autoFocus: true,
+                              hintText: 'Password...',
+                              controller: _auth.passwordEditController,
+                              onChange: (value) {
+                                _auth.updateValue('password', value);
+                              },
+                            )))),
                   ),
                   Expanded(
                     flex: 1,

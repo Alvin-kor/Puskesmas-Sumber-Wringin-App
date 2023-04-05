@@ -73,7 +73,9 @@ class AuthServices extends GetxController {
   // Sign Out User
   Future logOut() async {
     try {
-      await _auth.signOut();
+      _auth.currentUser!.isAnonymous
+          ? _auth.currentUser!.delete()
+          : await _auth.signOut();
     } catch (error) {
       print(error.toString());
       return null;
