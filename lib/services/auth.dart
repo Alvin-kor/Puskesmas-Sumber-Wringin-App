@@ -8,6 +8,7 @@ class AuthServices extends GetxController {
   final password = ''.obs;
   final error = ''.obs;
   final switchField = false.obs;
+  final loading = true.obs;
   final usernameEditController = TextEditingController();
   final passwordEditController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_pkm_sw/screens/kia/kia.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_pkm_sw/models/user.dart';
 import 'package:flutter_pkm_sw/screens/home/home.dart';
@@ -45,13 +46,6 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
         initialBinding: ServiceBindings(),
         initialRoute: '/',
-        getPages: user != null
-            ? [
-                GetPage(name: '/', page: () => Home()),
-              ]
-            : [
-                GetPage(name: '/', page: () => Wrapper()),
-              ],
         home: Wrapper(),
       ),
     );

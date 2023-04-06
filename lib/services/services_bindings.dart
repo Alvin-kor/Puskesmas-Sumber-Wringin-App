@@ -1,5 +1,5 @@
 import 'package:flutter_pkm_sw/services/auth.dart';
-import 'package:flutter_pkm_sw/services/homeHelper.dart';
+import 'package:flutter_pkm_sw/services/home_helper.dart';
 import 'package:flutter_pkm_sw/services/sidebar.dart';
 import 'package:get/get.dart';
 

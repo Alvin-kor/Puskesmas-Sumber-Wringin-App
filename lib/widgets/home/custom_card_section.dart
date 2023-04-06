@@ -18,29 +18,29 @@ class CustomCardSection extends StatelessWidget {
         elevation: 4.0,
         child: Container(
           padding: const EdgeInsets.all(10.0),
-          child: ExpansionTile(
-            title: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Icon(
-                icon,
-                color: Theme.of(context).colorScheme.onTertiaryContainer,
-                size: 30.0,
-              ),
-              const SizedBox(width: 10.0),
-              Text(
-                placeholder,
-                style: TextStyle(
-                  fontSize: 30.0,
+          child: SingleChildScrollView(
+            child: ExpansionTile(
+              title: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Icon(
+                  icon,
                   color: Theme.of(context).colorScheme.onTertiaryContainer,
+                  size: 30.0,
                 ),
-              ),
-            ]),
-            children: [
-              const SizedBox(height: 7.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SingleChildScrollView(
-                    child: ExpansionTile(
+                const SizedBox(width: 10.0),
+                Text(
+                  placeholder,
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Theme.of(context).colorScheme.onTertiaryContainer,
+                  ),
+                ),
+              ]),
+              children: [
+                const SizedBox(height: 7.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ExpansionTile(
                         title: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -107,22 +107,23 @@ class CustomCardSection extends StatelessWidget {
                             ),
                           )
                         ]),
-                  ),
-                  const SizedBox(height: 8.0),
-                  TextButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Icon(Icons.add),
-                          const SizedBox(width: 5.0),
-                          Text('Add Data ${isMobileWidth ? '' : placeholder}'),
-                        ],
-                      )),
-                  const SizedBox(height: 5.0),
-                ],
-              ),
-            ],
+                    const SizedBox(height: 8.0),
+                    TextButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.add),
+                            const SizedBox(width: 5.0),
+                            Text(
+                                'Add Data ${isMobileWidth ? '' : placeholder}'),
+                          ],
+                        )),
+                    const SizedBox(height: 5.0),
+                  ],
+                ),
+              ],
+            ),
           ),
         ));
   }

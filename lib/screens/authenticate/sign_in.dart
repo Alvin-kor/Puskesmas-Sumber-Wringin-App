@@ -69,7 +69,7 @@ class SignIn extends StatelessWidget {
                             crossFadeState: _auth.switchField.value
                                 ? CrossFadeState.showSecond
                                 : CrossFadeState.showFirst,
-                            duration: const Duration(milliseconds: 500),
+                            duration: const Duration(milliseconds: 1000),
                             firstChild: RoundedInput(
                               password: false,
                               autoFocus: false,

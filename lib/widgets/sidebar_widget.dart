@@ -1,7 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_material_symbols/flutter_material_symbols.dart';
 import 'package:flutter_pkm_sw/services/sidebar.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class CustomSidebar extends StatelessWidget {
   CustomSidebar({super.key});
@@ -9,6 +11,17 @@ class CustomSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    destination(icon, placeholder) {
+      return NavigationRailDestination(
+        icon: Icon(
+          icon,
+          color: Colors.grey[300],
+        ),
+        selectedIcon: Icon(icon),
+        label: Text(placeholder),
+      );
+    }
+
     final isDesktop = MediaQuery.of(context).size.width > 500;
     if (isDesktop) {
       return Obx(
@@ -18,30 +31,23 @@ class CustomSidebar extends StatelessWidget {
               : const Offset(-1.0, 0.0),
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeInOut,
-          child: Row(children: [
-            NavigationRail(
-              elevation: 4.0,
-              minWidth: MediaQuery.of(context).size.width * 0.04,
-              backgroundColor: const Color.fromARGB(255, 247, 255, 255),
-              groupAlignment: -1.0,
-              labelType: NavigationRailLabelType.selected,
-              selectedIndex: 0,
-              destinations: const [
-                NavigationRailDestination(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
-                  icon: Icon(Icons.dashboard),
-                  selectedIcon: Icon(Icons.dashboard),
-                  label: Text('Trending'),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.date_range),
-                  selectedIcon: Icon(Icons.dashboard),
-                  label: Text('Trending'),
-                ),
-              ],
-            )
-          ]),
+          child: NavigationRail(
+            useIndicator: false,
+            elevation: 4.0,
+            minWidth: MediaQuery.of(context).size.width * 0.04,
+            backgroundColor: const Color.fromARGB(255, 247, 255, 255),
+            groupAlignment: 0.0,
+            labelType: NavigationRailLabelType.selected,
+            selectedIndex: _sidebar.selectedIndex.value,
+            onDestinationSelected: (index) =>
+                _sidebar.selectedIndexHandle(index),
+            destinations: [
+              destination(MaterialSymbols.dashboard, 'Dashboard'),
+              destination(MaterialSymbols.breastfeeding, 'KIA'),
+              destination(MaterialSymbols.nutrition, 'Gizi'),
+              destination(MaterialSymbols.vaccines, 'Imunisasi'),
+            ],
+          ),
         ),
       );
     } else {
