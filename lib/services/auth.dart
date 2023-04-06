@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pkm_sw/screens/wrapper.dart';
 import 'package:get/get.dart';
 import 'package:flutter_pkm_sw/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -75,7 +76,9 @@ class AuthServices extends GetxController {
   Future logOut() async {
     try {
       _auth.currentUser!.isAnonymous
-          ? _auth.currentUser!.delete()
+          ? _auth.currentUser!
+              .delete()
+              .then((value) => Get.offAll(() => Wrapper(), routeName: '/'))
           : await _auth.signOut();
     } catch (error) {
       print(error.toString());

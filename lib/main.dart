@@ -46,6 +46,30 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
         initialBinding: ServiceBindings(),
         initialRoute: '/',
+        unknownRoute: GetPage(name: '/', page: () => Wrapper()),
+        getPages: user != null
+            ? [
+                GetPage(
+                    name: '/',
+                    page: () => Home(),
+                    transition: Transition.leftToRightWithFade,
+                    curve: Curves.easeInOut,
+                    transitionDuration: const Duration(milliseconds: 1000)),
+                GetPage(
+                    name: '/kia',
+                    page: () => KIA(),
+                    transition: Transition.leftToRightWithFade,
+                    curve: Curves.easeInOut,
+                    transitionDuration: const Duration(milliseconds: 1000))
+              ]
+            : [
+                GetPage(
+                    name: '/',
+                    page: () => Wrapper(),
+                    transition: Transition.leftToRightWithFade,
+                    curve: Curves.easeInOut,
+                    transitionDuration: const Duration(milliseconds: 2000))
+              ],
         home: Wrapper(),
       ),
     );
